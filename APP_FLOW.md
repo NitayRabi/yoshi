@@ -85,6 +85,7 @@ Then edit `server.js` with:
 ```diff
 import wixExpressCsrf from '@wix/wix-express-csrf';
 import wixExpressRequireHttps from '@wix/wix-express-require-https';
++import { hot } from 'bootstrap-hot-loader';
 
 -export default (app, context) => {
 +export default hot(module, (app, context) => {
