@@ -68,6 +68,10 @@ Finally, opt-into app flow by changing your `package.json` to include:
 
 ```diff
 {
+  "scripts": {
+-   "start": "yoshi start --entry-point=index-dev.js" 
++   "start": "yoshi start --server=index-dev.js" 
+  },
   "yoshi": {
 +    "projectType": "app"
   }
