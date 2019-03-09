@@ -1,6 +1,7 @@
 const path = require('path');
 const globby = require('globby');
 const webpack = require('webpack');
+const buildUrl = require('build-url');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -616,7 +617,14 @@ function createClientWebpackConfig({
 
       // Polyfill via https://polyfill.io
       new HtmlPolyfillPlugin(HtmlWebpackPlugin, [
-        'https://static.parastorage.com/polyfill/v2/polyfill.min.js?features=default,es6,es7,es2017&flags=gated&unknown=polyfill&rum=0',
+        buildUrl('https://static.parastorage.com/polyfill/v2/polyfill.min.js', {
+          queryParams: {
+            features: ['default', 'es6', 'es7', 'es2017'],
+            flags: ['gated'],
+            unknown: 'polyfill',
+            rum: 0,
+          },
+        }),
       ]),
 
       // https://github.com/gajus/write-file-webpack-plugin
