@@ -1,6 +1,7 @@
-const testKitEnv = require('../../environment')
+const testKitEnv = require('./environment')
   .environment()
   .then(env => {
+    console.log('Starting BIZ mgr testkit!');
     env.start();
     return env;
   });
