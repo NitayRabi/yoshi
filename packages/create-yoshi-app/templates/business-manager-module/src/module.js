@@ -1,34 +1,42 @@
+import React from 'react';
 import {
   BusinessManagerModule,
   registerModule,
 } from '@wix/business-manager-api';
-import { ModuleRegistry, ReactLazyComponent } from 'react-module-container';
+import { ModuleRegistry } from 'react-module-container';
 import { MODULE_ID, LAZY_COMPONENT_ID, COMPONENT_ID } from './config';
 
-const files = props => {
-  const minified = debug => (debug ? '' : '.min');
-  const APP_BUNDLE_FILE = '{%projectName%}-app'; // should be in sync with app's entry-point name in package.json
-  return [
-    `${props.config.topology.staticsUrl}${APP_BUNDLE_FILE}.bundle${minified(
-      props.debug,
-    )}.js`,
-    `${props.config.topology.staticsUrl}${APP_BUNDLE_FILE}${minified(
-      props.debug,
-    )}.css`,
-  ];
-};
+class BMLazyComponent extends React.Component {
+  state = {
+    component: null,
+  };
 
-class BMLazyComponent extends ReactLazyComponent {
-  static prefetch(params) {
-    return files(params);
+  componentDidMount() {
+    ModuleRegistry.notifyListeners(
+      'reactModuleContainer.componentStartLoading',
+      COMPONENT_ID,
+    );
+    import('./client').then(
+      () => {
+        ModuleRegistry.notifyListeners(
+          'reactModuleContainer.componentReady',
+          COMPONENT_ID,
+        );
+        const component = ModuleRegistry.component(COMPONENT_ID);
+        this.setState({ component });
+      },
+      error => {
+        console.error(`Error loading component ${COMPONENT_ID}`, error);
+      },
+    );
   }
 
-  constructor(props) {
-    const options = {
-      files: files(props),
-      component: COMPONENT_ID,
-    };
-    super(props, options);
+  render() {
+    return this.state.component ? (
+      <this.state.component {...this.props} />
+    ) : (
+      <h1>Loading...</h1>
+    );
   }
 }
 
