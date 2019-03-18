@@ -60,7 +60,7 @@
     },
     "yoshi": {
       "entry": {
-        "{%projectName%}-module": "./module",
+        "{%projectName%}-module": "./module.tsx",
         "{%projectName%}-app": "./client"
       },
       "externals": {
