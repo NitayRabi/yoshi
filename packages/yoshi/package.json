@@ -135,7 +135,9 @@
     "write-file-webpack-plugin": "4.5.0",
     "xmldoc": "1.1.2",
     "yoshi-config": "4.1.0-rc.0",
-    "yoshi-helpers": "4.1.0-rc.0"
+    "yoshi-helpers": "4.1.0-rc.0",
+    "find-config": "^1.0.0",
+    "murmurhash": "0.0.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "7.2.0",

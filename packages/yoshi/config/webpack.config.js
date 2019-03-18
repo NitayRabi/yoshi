@@ -17,6 +17,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { localIdentName } = require('../src/constants');
 const EnvirnmentMarkPlugin = require('../src/webpack-plugins/environment-mark-plugin');
 const { tryRequire } = require('yoshi-helpers');
+const hash = require('murmurhash');
+const findConfig = require('find-config');
+const { dirname, relative } = require('path');
 
 const {
   ROOT_DIR,
@@ -114,6 +117,25 @@ const splitChunksConfig = isObject(useSplitChunks)
 const entry = project.entry || project.defaultEntry;
 
 const possibleServerEntries = ['./server', '../test/dev-server'];
+
+// Namespace factory for stylable hashing.
+function resolveNamespaceFactory(prefix) {
+  return (namespace, stylesheetPath) => {
+    const configPath = findConfig('package.json', {
+      cwd: dirname(stylesheetPath),
+    });
+    const config = require(configPath);
+    const fromRoot = relative(dirname(configPath), stylesheetPath).replace(
+      /\\/g,
+      '/',
+    );
+    return (
+      prefix +
+      namespace +
+      hash.v3(config.name + '@' + config.version + '/' + fromRoot)
+    );
+  };
+}
 
 // Common function to get style loaders
 const getStyleLoaders = ({
@@ -654,6 +676,7 @@ function createClientWebpackConfig({
         generate: {
           runtimeStylesheetId: 'namespace',
         },
+        resolveNamespace: resolveNamespaceFactory(process.cwd()),
       }),
 
       // https://github.com/th0r/webpack-bundle-analyzer
