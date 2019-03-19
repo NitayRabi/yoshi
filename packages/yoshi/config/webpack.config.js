@@ -10,7 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const StylableWebpackPlugin = require('@stylable/webpack-plugin');
 const {
   resolveNamespaceFactory,
-} = require('@stylable/node/dist/resolve-namespace');
+} = require('@stylable/node');
 const TpaStyleWebpackPlugin = require('tpa-style-webpack-plugin');
 const RtlCssPlugin = require('rtlcss-webpack-plugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
