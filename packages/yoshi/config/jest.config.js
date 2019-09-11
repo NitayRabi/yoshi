@@ -4,13 +4,16 @@ const { inTeamCity } = require('yoshi-helpers/queries');
 
 const jestProjectConfig = projectConfig.jestConfig;
 
-const config = merge({
-  transform: {
-    '\\.jsx?$': require.resolve('./jest-transformer'),
-    '\\.st.css?$': require.resolve('@stylable/jest'),
-    '\\.svg$': require.resolve('./svg-transformer.js'),
+const config = merge(
+  {
+    transform: {
+      '\\.jsx?$': require.resolve('./jest-transformer'),
+      '\\.st.css?$': require.resolve('@stylable/jest'),
+      '\\.svg$': require.resolve('./svg-transformer.js'),
+    },
   },
-}, jestProjectConfig);
+  jestProjectConfig,
+);
 
 config.transformIgnorePatterns = (config.transformIgnorePatterns || []).concat([
   '/node_modules/(?!(.*?\\.(st\\.css|svg)$))',
