@@ -4,12 +4,12 @@ const { inTeamCity } = require('yoshi-helpers');
 
 const jestProjectConfig = projectConfig.jestConfig;
 
-const config = merge(jestProjectConfig, {
+const config = merge({
   transform: {
     '\\.jsx?$': require.resolve('./jest-transformer'),
     '\\.st.css?$': require.resolve('@stylable/jest'),
   },
-});
+}, jestProjectConfig);
 
 config.transformIgnorePatterns = (config.transformIgnorePatterns || []).concat([
   '/node_modules/(?!(.*?\\.st\\.css$))',
