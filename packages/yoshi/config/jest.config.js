@@ -8,7 +8,7 @@ const config = merge(
   {
     transform: {
       '\\.jsx?$': require.resolve('./jest-transformer'),
-      '\\.st.css?$': require.resolve('@stylable/jest'),
+      '\\.st.css?$': require.resolve('@stylable/jest/cjs/index-legacy'),
       '\\.svg$': require.resolve('./svg-transformer.js'),
     },
   },

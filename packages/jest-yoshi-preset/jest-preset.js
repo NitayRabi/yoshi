@@ -142,7 +142,7 @@ const config = {
           transform: {
             '^.+\\.jsx?$': require.resolve('./transforms/babel'),
             '^.+\\.tsx?$': require.resolve('./transforms/typescript'),
-            '\\.st.css?$': require.resolve('@stylable/jest'),
+            '\\.st.css?$': require.resolve('@stylable/jest/cjs/index-legacy'),
             '\\.(gql|graphql)$': require.resolve('jest-transform-graphql'),
             '\\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|eot|wav|mp3|html|md)$': require.resolve(
               './transforms/file',

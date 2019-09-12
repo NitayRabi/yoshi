@@ -51,6 +51,7 @@ module.exports = {
       outputCSS: false,
       filename: '[name].stylable.bundle.css',
       includeCSSInJS: true,
+      runtimeLegacy: true,
       optimize: { classNameOptimizations: false },
     }),
   ],

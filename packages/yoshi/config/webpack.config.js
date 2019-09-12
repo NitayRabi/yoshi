@@ -763,6 +763,7 @@ function createClientWebpackConfig({
         generate: {
           runtimeStylesheetId: 'namespace',
         },
+        legacyRuntime: true,
         resolveNamespace: resolveNamespaceFactory(project.name),
       }),
 

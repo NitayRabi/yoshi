@@ -13,6 +13,20 @@ const styleLoaders = getStyleLoaders({
   tpaStyle: false,
 });
 
+const stylableStorybookPlugin = new StylableWebpackPlugin({
+  filename: '[name].stylable.bundle.css',
+  optimize: {
+    classNameOptimizations: false,
+    shortNamespaces: false,
+    removeUnusedComponents: false,
+  },
+  generate: {
+    runtimeStylesheetId: 'namespace',
+  },
+  legacyRuntime: true,
+  unsafeBuildNamespace: true,
+});
+
 module.exports = config => {
   const webpackCommonConfig = createCommonWebpackConfig({ isDebug: true });
 
@@ -28,7 +42,7 @@ module.exports = config => {
     ...styleLoaders,
   ];
 
-  config.plugins = [...(config.plugins || []), new StylableWebpackPlugin()];
+  config.plugins = [...(config.plugins || []), stylableStorybookPlugin];
 
   config.node = { ...webpackCommonConfig.node, ...config.node };
 
