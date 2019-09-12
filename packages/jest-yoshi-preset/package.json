@@ -12,8 +12,8 @@
   "author": "Ronen Amiel & Ran Yitzhaki",
   "license": "ISC",
   "peerDependencies": {
-    "@stylable/core": "^1.0.0",
-    "@stylable/jest": "^1.0.0",
+    "@stylable/core": "^2.3.1-alpha.0",
+    "@stylable/jest": "^2.3.1-alpha.1",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "jest": "^24.1.0",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@stylable/core": "^1.0.0",
-    "@stylable/jest": "^1.0.0",
+    "@stylable/core": "^2.3.1-alpha.0",
+    "@stylable/jest": "^2.3.1-alpha.1",
     "babel-preset-yoshi": "4.13.0",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
