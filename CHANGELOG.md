@@ -1,5 +1,53 @@
 # Changelog
 
+## 4.15.2 (2019-09-12)
+
+#### :bug: Bug Fix
+
+- `jest-yoshi-preset`, `yoshi`
+  - [#1541](https://github.com/wix/yoshi/pull/1541) Transform `.api` files only for those who opt-in ([@ronami](https://github.com/ronami))
+
+## 4.15.1 (2019-09-11)
+
+#### :bug: Bug Fix
+
+- `yoshi`
+  - [#1539](https://github.com/wix/yoshi/pull/1539) Inject HMR entries to the correct Webpack configuration ([@ronami](https://github.com/ronami))
+
+#### :house: Internal
+
+- [#1532](https://github.com/wix/yoshi/pull/1532) Temporarily skip flaky HMR tests ([@ronami](https://github.com/ronami))
+- [#1531](https://github.com/wix/yoshi/pull/1531) separate kitchensink app-flow and yoshi-server tests ([@ranyitz](https://github.com/ranyitz))
+
+## 4.15.0 (2019-09-11)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`, `jest-yoshi-preset`, `yoshi-config`, `yoshi-server-client`, `yoshi-server-react`, `yoshi-server-testing`, `yoshi-server-tools`, `yoshi-server`, `yoshi`
+  - [#1476](https://github.com/wix/yoshi/pull/1476) Yoshi server ([@ronami](https://github.com/ronami))
+
+#### :house: Internal
+
+- [#1530](https://github.com/wix/yoshi/pull/1530) Remove travis configuration for Yoshi tests ([@ranyitz](https://github.com/ranyitz))
+
+## 4.14.0 (2019-09-11)
+
+#### :rocket: New Feature
+
+- `yoshi`
+  - [#1529](https://github.com/wix/yoshi/pull/1529) `jest.config.js` - Allow overriding transformers from local config ([@NitayRabi](https://github.com/NitayRabi))
+- `create-yoshi-app`
+  - [#1486](https://github.com/wix/yoshi/pull/1486) Update `business-manager-module` template with `notifyViewStartLoading` ([@ronenst](https://github.com/ronenst))
+- `babel-preset-yoshi`
+  - [#1519](https://github.com/wix/yoshi/pull/1519) Keep dynamic `import()` if `modules: false` (e.g. ECMAScript build) ([@zemlanin](https://github.com/zemlanin))
+
+#### :house: Internal
+
+- `babel-preset-yoshi`
+  - [#1527](https://github.com/wix/yoshi/pull/1527) Add comment regarding `babel-plugin-dynamic-import` to babel preset yoshi ([@ranyitz](https://github.com/ranyitz))
+- `create-yoshi-app`
+  - [#1497](https://github.com/wix/yoshi/pull/1497) Fix tests with `chalk`ed snapshots in color terms ([@zemlanin](https://github.com/zemlanin))
+
 ## 4.13.0 (2019-09-08)
 
 #### :rocket: New Feature
