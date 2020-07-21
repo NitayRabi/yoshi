@@ -23,7 +23,7 @@ export const getStylableManifestPlugin = (name: string) => {
     return new StylableManifestPlugin({
       package: {
         name,
-        version: getProjectArtifactVersion(name) || '0.0.0',
+        version: getProjectArtifactVersion() || '0.0.0',
       },
       outputType: 'fs-manifest',
       resolveNamespace: resolveNamespaceFactory(name),
