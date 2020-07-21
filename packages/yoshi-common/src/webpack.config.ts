@@ -174,7 +174,7 @@ const getCommonStylbleWebpackConfig = (name: string) => ({
 
 const getStylableManifestPlugin = (name: string) => {
   try {
-    // expected to be installed on the project that tests this experimental feature
+    // expected to be installed on the project that tests stylable-loader experimental feature
     // eslint-disable-next-line import/no-extraneous-dependencies
     const { StylableManifestPlugin } = require('@stylable/webpack-extensions');
     return new StylableManifestPlugin({
