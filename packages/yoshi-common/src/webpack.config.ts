@@ -65,6 +65,7 @@ import SveltePreprocessSSR from './svelte-server-side-preprocess';
 import { asyncWebWorkerTarget } from './AsyncWebWorkerTarget/AsyncWebWorkerTarget';
 import { sourceMapPlugin } from './source-map-plugin';
 import HtmlRenderingDataPlugin from './html-rendering-data-plugin';
+import { getStylableManifestPlugin } from './@stylable/manifest-plugin';
 
 export type CompilationTarget =
   | 'web'
@@ -171,43 +172,6 @@ const getCommonStylbleWebpackConfig = (name: string) => ({
   },
   resolveNamespace: resolveNamespaceFactory(name),
 });
-
-const getStylableManifestPlugin = (name: string) => {
-  try {
-    // expected to be installed on the project that tests stylable-loader experimental feature
-    // eslint-disable-next-line import/no-extraneous-dependencies
-    const { StylableManifestPlugin } = require('@stylable/webpack-extensions');
-    return new StylableManifestPlugin({
-      package: {
-        name,
-        version: process.env.ARTIFACT_VERSION || '0.0.0',
-      },
-      outputType: 'fs-manifest',
-      resolveNamespace: resolveNamespaceFactory(name),
-      filterComponents(resourcePath: string) {
-        return resourcePath.endsWith('.component.st.css');
-      },
-      getCompId(resourcePath: string) {
-        return path.basename(resourcePath).replace(/\.component\.st\.css$/, '');
-      },
-      getOutputFileName(contentHash: string) {
-        return `${name}.${contentHash}.metadata.json`;
-      },
-      /**
-       * TODO - this is a workaround for stylable panel
-       * It depends on `wix-ui-santa` string.
-       */
-      packageAlias: {
-        'wix-ui-santa': `/${name}`,
-      },
-    });
-  } catch (e) {
-    console.error(
-      'Failed creating stylable manifest plugin. \n `@stylable/webpack-extensions` should be installed to support this feature',
-    );
-    throw e;
-  }
-};
 
 export const getStyleLoaders = ({
   name,
