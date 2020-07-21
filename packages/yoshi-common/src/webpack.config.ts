@@ -193,6 +193,13 @@ const getStylableManifestPlugin = (name: string) => {
       getOutputFileName(contentHash: string) {
         return `${name}.${contentHash}.metadata.json`;
       },
+      /**
+       * TODO - this is a workaround for stylable panel
+       * It depends on `wix-ui-santa` string.
+       */
+      packageAlias: {
+        'wix-ui-santa': `/${name}`,
+      },
     });
   } catch (e) {
     console.error(
