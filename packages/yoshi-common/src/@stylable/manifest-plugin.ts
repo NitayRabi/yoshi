@@ -2,7 +2,7 @@ import { basename } from 'path';
 import {
   stripOrganization,
   getProjectArtifactVersion,
-} from 'yoshi-helpers/utils';
+} from 'yoshi-helpers/build/utils';
 import { resolveNamespaceFactory } from './node';
 
 /**
@@ -19,7 +19,9 @@ export const getStylableManifestPlugin = (name: string) => {
   try {
     // expected to be installed on the project that tests stylable-loader experimental feature
     // eslint-disable-next-line import/no-extraneous-dependencies
-    const { StylableManifestPlugin } = require('@stylable/webpack-extensions');
+    const {
+      StylableManifestPlugin,
+    }: typeof import('@stylable/webpack-extensions') = require('@stylable/webpack-extensions');
     return new StylableManifestPlugin({
       package: {
         name,
